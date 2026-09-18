@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "Category": {
+      "title": "Category",
+      "description": "Equipment classification category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique category identifier" },
+        "name": { "type": "string", "description": "Category display name", "maxLength": 100 },
+        "slug": { "type": "string", "description": "URL-safe slug", "pattern": "^[a-z0-9-]+$", "maxLength": 100 },
+        "description": { "type": "string", "description": "Category overview description", "maxLength": 500 },
+        "icon": { "type": "string", "description": "Lucide icon identifier name", "maxLength": 50 }
+      },
+      "required": ["id", "name", "slug", "description", "icon"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Gym equipment product entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique product identifier" },
+        "name": { "type": "string", "description": "Product title", "maxLength": 150 },
+        "slug": { "type": "string", "description": "URL slug", "pattern": "^[a-z0-9-]+$", "maxLength": 150 },
+        "categoryId": { "type": "string", "description": "Referenced category ID", "maxLength": 100 },
+        "shortDescription": { "type": "string", "description": "Catalog card summary", "maxLength": 300 },
+        "fullDescription": { "type": "string", "description": "In-depth product details and features", "maxLength": 3000 },
+        "specifications": { "type": "object", "description": "Product technical specifications key-value map" },
+        "price": { "type": "number", "description": "Retail price in USD" },
+        "currency": { "type": "string", "description": "ISO currency code, default USD", "maxLength": 10 },
+        "imageUrl": { "type": "string", "description": "Product photo or placeholder URL", "maxLength": 1000 },
+        "inStock": { "type": "boolean", "description": "Inventory availability flag" },
+        "rating": { "type": "number", "description": "Average review score 1-5" },
+        "featured": { "type": "boolean", "description": "Showcased on homepage carousel" }
+      },
+      "required": ["id", "name", "slug", "categoryId", "shortDescription", "fullDescription", "specifications", "price", "currency", "imageUrl", "inStock", "rating", "featured"]
+    },
+    "ContactSubmission": {
+      "title": "ContactSubmission",
+      "description": "Customer inquiry or contact message",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Submission identifier" },
+        "name": { "type": "string", "description": "Sender full name", "maxLength": 100 },
+        "email": { "type": "string", "description": "Sender email address", "maxLength": 150 },
+        "subject": { "type": "string", "description": "Message topic", "maxLength": 200 },
+        "message": { "type": "string", "description": "Full message content", "maxLength": 3000 },
+        "createdAt": { "type": "string", "description": "Creation timestamp ISO string", "maxLength": 50 }
+      },
+      "required": ["id", "name", "email", "subject", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Public category directory"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Public equipment product catalog"
+    },
+    "/contact_submissions/{submissionId}": {
+      "schema": "ContactSubmission",
+      "description": "Customer contact form messages"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "PeakForm Commercial Fitness",
+  "description": "Premium gym equipment retailer featuring cardio, strength machines, free weights, strongman gear, calisthenics, and accessories with full catalog and admin management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
